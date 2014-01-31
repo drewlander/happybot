@@ -7,9 +7,10 @@ class AutoKick
   match /^command3 (.+)/, use_prefix: false
 
   def listen(m)
-#    @admins = ['gtsphere', 'drewlander', 'FU5T']
-     @admins = IO.readlines('plugins/admins.txt')
-    unless @admins.include?(m.user.nick)
+    unless File.open('plugins/admins.txt').lines.any?{|line| line.include?(m.user.nick)}
+       debug "kicked user"
+       debug m.user.nick
+       debug m.user
        m.channel.kick(m.user)
     end
   end
