@@ -22,6 +22,7 @@ class GetWeather
      m.reply "Current Alerts: "
      r['alerts'].each do |x|
         m.reply x['description']
+        m.reply x['message']
      end
   end
 end
